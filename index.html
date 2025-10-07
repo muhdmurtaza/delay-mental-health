@@ -146,6 +146,24 @@
       .deck-card { box-shadow: none; border:1px solid #ddd; }
       h1, h2, h3 { color:#000; }
     }
+	
+	/* Generic one-line truncation */
+	.truncate {
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	  white-space: nowrap;
+	}
+
+	/* Needed for flex children so they’re allowed to shrink */
+	.footer > .flex-item {
+	  min-width: 0;           
+	}
+
+	/* Optional: let the right side take remaining space */
+	.footer .grow {
+	  flex: 1 1 auto;
+	  text-align: right;
+	}
   </style>
 </head>
 <body>
@@ -161,10 +179,10 @@
       </button>
       <div id="nav" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
+		  <li class="nav-item"><a class="nav-link" href="#cover">Cover</a></li>
           <li class="nav-item"><a class="nav-link" href="#quiz">Quick Quiz</a></li>
           <li class="nav-item"><a class="nav-link" href="#mh-definition">What is mental health?</a></li>
           <li class="nav-item"><a class="nav-link" href="#history">Mental illness: History</a></li>
-          <li class="nav-item"><a class="nav-link" href="#cover">Cover</a></li>
           <li class="nav-item"><a class="nav-link" href="#background">Background</a></li>
           <li class="nav-item"><a class="nav-link" href="#methods">Methods</a></li>
           <li class="nav-item"><a class="nav-link" href="#patients">Patients</a></li>
@@ -177,7 +195,40 @@
       </div>
     </div>
   </nav>
-
+  
+  <!-- COVER -->
+  <section id="cover" class="section">
+    <div class="container">
+      <div class="deck-card p-4 p-lg-5">
+        <div class="band">
+          <div class="kicker">Conference Presentation</div>
+          <h1 class="mt-1 mb-0">Culturally Shaped Explanatory Models of Psychological and Psychiatric Distress in Family Caregivers and their Impact on Help-Seeking Behavrior: A Cross-Sectional Study from Oman</h1>
+          <p class="mb-0"><strong>Dr. Hassan Mirza</strong></p>
+          <p class="mb-0">Senior Consultant</p>
+          <p class="mb-0">Department of Behavioural Medicine</p>
+          <p class="mb-0">SQUH</p>
+        </div>
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-8">
+            <h3 class="mb-3">Study focus</h3>
+            <div class="row g-3">
+              <div class="col-md-6"><div class="p-3 pill">Pathways to care</div></div>
+              <div class="col-md-6"><div class="p-3 pill">Family beliefs & models</div></div>
+              <div class="col-md-6"><div class="p-3 pill">Delays to treatment (DUI)</div></div>
+              <div class="col-md-6"><div class="p-3 pill">Predictors of indigenous healer use</div></div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="text-lg-end">
+              <button id="toggleTheme2" class="btn btn-outline-contrast btn-lg" aria-pressed="true">Dark Mode</button>
+              <p class="mini mt-3 muted">Use ↑ ↓ keys to move between sections • Use the Scrollbar to move up and down • Press F to toggle full screen</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
   <!-- QUICK QUIZ (FIRST PAGE) -->
   <section id="quiz" class="section">
     <div class="container">
@@ -197,10 +248,6 @@
           </a>
         </p>
 
-        <div class="mt-3">
-          <button id="start" class="btn btn-brand btn-lg me-2">Start Presentation</button>
-          <button id="toggleTheme" class="btn btn-outline-contrast btn-lg" aria-pressed="true">Dark Mode</button>
-        </div>
         <p class="mini mt-3 muted">Scan the QR code or open the link above on your device.</p>
       </div>
     </div>
@@ -273,40 +320,6 @@
           </div>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- COVER -->
-  <section id="cover" class="section">
-    <div class="container">
-      <div class="deck-card p-4 p-lg-5">
-        <div class="band">
-          <div class="kicker">Conference Presentation</div>
-          <h1 class="mt-1 mb-0">Culturally Shaped Explanatory Models of Psychological and Psychiatric Distress in Family Caregivers and their Impact on Help-Seeking Behavrior: A Cross-Sectional Study from Oman</h1>
-          <p class="mb-0"><strong>Dr. Hassan Mirza</strong></p>
-          <p class="mb-0">Senior Consultant</p>
-          <p class="mb-0">Department of Behavioural Medicine</p>
-          <p class="mb-0">SQUH</p>
-        </div>
-        <div class="row g-4 align-items-center">
-          <div class="col-lg-8">
-            <h3 class="mb-3">Study focus</h3>
-            <div class="row g-3">
-              <div class="col-md-6"><div class="p-3 pill">Pathways to care</div></div>
-              <div class="col-md-6"><div class="p-3 pill">Family beliefs & models</div></div>
-              <div class="col-md-6"><div class="p-3 pill">Delays to treatment (DUI)</div></div>
-              <div class="col-md-6"><div class="p-3 pill">Predictors of indigenous healer use</div></div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="text-lg-end">
-              <button class="btn btn-brand btn-lg me-2" onclick="document.documentElement.requestFullscreen?.(); $('html,body').animate({scrollTop: $('#background').offset().top - 70}, 400);">Go to Background</button>
-              <button id="toggleTheme2" class="btn btn-outline-contrast btn-lg" aria-pressed="true">Dark Mode</button>
-              <p class="mini mt-3 muted">Use ↑ ↓ keys to move between sections • Press F to toggle full screen</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -492,7 +505,7 @@
         </div>
         <div class="mt-4 d-flex gap-2">
           <button id="prev" class="btn btn-outline-contrast">← Previous</button>
-          <button id="next" class="btn btn-brand">Next →</button>
+          <!-- <button id="next" class="btn btn-brand">Next →</button> -->
           <button id="print" class="btn btn-outline-contrast">Export to PDF</button>
         </div>
       </div>
@@ -501,8 +514,8 @@
 
   <!-- FOOTER -->
   <div class="footer">
-    <div>Mental Health Pathways • Oman</div>
-    <div class="muted">Use ↑ ↓ keys • Click “Export to PDF” for a printable version</div>
+    <div class="flex-item muted truncate">Dr. Hassan Mirza • SQUH</div>
+    <div class="flex-item grow muted truncate"  title="Use ↑ ↓ keys to move between sections • Use the Scrollbar to move up and down • Press F to toggle full screen">Use ↑ ↓ keys to move between sections • Use the Scrollbar to move up and down • Press F to toggle full screen</div>
   </div>
 
   <!-- Bootstrap JS -->
@@ -557,7 +570,7 @@
       $("html, body").animate({scrollTop: $(target).offset().top - 70}, 350);
     });
 
-    const sections = ["#quiz","#mh-definition","#history","#cover","#background","#methods","#patients","#relatives","#beliefs","#dui","#predictors","#takeaways"];
+    const sections = ["#cover","#quiz","#mh-definition","#history","#background","#methods","#patients","#relatives","#beliefs","#dui","#predictors","#takeaways"];
     function currentSectionIndex(){
       const scrollTop = $(window).scrollTop() + 90;
       let idx = 0;
@@ -755,7 +768,3 @@
   </script>
 </body>
 </html>
-
-
-
-
